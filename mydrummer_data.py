@@ -1,6 +1,6 @@
+import json
+import requests
 from flask import Flask, make_response, request, jsonify, Response
-import datetime, json, sys, os
-from collections import Counter
 
 app = Flask(__name__)
 data_dir = "./"
@@ -17,12 +17,42 @@ def drummer_list():
     resp = make_response(jsonify(drummers=drummer_list))
     return resp
 
-    
-@app.route("/options", methods=["GET", "PUT", "POST"])
+@app.route("/stevegadd")
+def stevegadd():
+    sg = {'stevegadd': readsteve()}
+    resp = Response(json.dumps(sg))
+    return resp
+
+
+def readsteve():
+    s = ""
+    with open("drummers/stevegadd.html") as f:
+            for l in f:
+                l = l.rstrip()
+                s += l
+    return s
+
+
+@app.route("/buddyrich")
+def buddyrich():
+    sg = {'buddyrich': readbuddy()}
+    resp = Response(json.dumps(sg))
+    return resp
+
+def readbuddy():
+    s = ""
+    with open("drummers/buddyrich.html") as f:
+            for l in f:
+                l = l.rstrip()
+                s += l
+    return s
+
+
+
+
+
+@app.route("/options", methods=["GET"])
 def options_route():
-    '''
-    Methods used to view options, add new option, and replace options.
-    '''
     if request.method == "GET":
         options = {"options":option_list()}
         status = 200
@@ -35,9 +65,6 @@ def options_route():
 
 
 def option_list():
-    '''
-    Get a list of possible options.
-    '''
     options = []
     with open(data_file) as f:
         for line in f:
@@ -47,4 +74,4 @@ def option_list():
 
 
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0')
+    app.run(debug=True,host='0.0.0.0', port=int('5003'))
