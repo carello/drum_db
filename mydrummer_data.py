@@ -48,7 +48,7 @@ def readbuddy():
 
 @app.route("/carterbeauford")
 def carterbeauford():
-    sg = {'carterbeauford': readbuddy()}
+    sg = {'carterbeauford': readcarter()}
     resp = Response(json.dumps(sg))
     return resp
 
@@ -62,7 +62,7 @@ def readcarter():
 
 @app.route("/chetcarello")
 def chetcarello():
-    sg = {'chetcarello': readbuddy()}
+    sg = {'chetcarello': readchet()}
     resp = Response(json.dumps(sg))
     return resp
 
@@ -76,7 +76,7 @@ def readchet():
 
 @app.route("/neipeart")
 def neilpeart():
-    sg = {'neilpeart': readbuddy()}
+    sg = {'neilpeart': readneil()}
     resp = Response(json.dumps(sg))
     return resp
 
@@ -91,7 +91,7 @@ def readneil():
 
 @app.route("/vinniecolaiutra")
 def vinniecolaiutra():
-    sg = {'vinniecolaiuta': readbuddy()}
+    sg = {'vinniecolaiuta': readvinnie()}
     resp = Response(json.dumps(sg))
     return resp
 
