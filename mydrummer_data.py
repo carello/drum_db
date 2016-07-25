@@ -23,7 +23,6 @@ def stevegadd():
     resp = Response(json.dumps(sg))
     return resp
 
-
 def readsteve():
     s = ""
     with open("drummers/stevegadd.html") as f:
@@ -48,12 +47,12 @@ def readbuddy():
     return s
 
 @app.route("/carterbeauford")
-def buddyrich():
+def carterbeauford():
     sg = {'carterbeauford': readbuddy()}
     resp = Response(json.dumps(sg))
     return resp
 
-def readbuddy():
+def readcarter():
     s = ""
     with open("drummers/carterbeauford.html") as f:
             for l in f:
@@ -62,12 +61,12 @@ def readbuddy():
     return s
 
 @app.route("/chetcarello")
-def buddyrich():
+def chetcarello():
     sg = {'chetcarello': readbuddy()}
     resp = Response(json.dumps(sg))
     return resp
 
-def readbuddy():
+def readchet():
     s = ""
     with open("drummers/chetcarello.html") as f:
             for l in f:
@@ -76,12 +75,12 @@ def readbuddy():
     return s
 
 @app.route("/neipeart")
-def buddyrich():
+def neilpeart():
     sg = {'neilpeart': readbuddy()}
     resp = Response(json.dumps(sg))
     return resp
 
-def readbuddy():
+def readneil():
     s = ""
     with open("drummers/neilpeart.html") as f:
             for l in f:
@@ -91,12 +90,12 @@ def readbuddy():
 
 
 @app.route("/vinniecolaiutra")
-def buddyrich():
+def vinniecolaiutra():
     sg = {'vinniecolaiuta': readbuddy()}
     resp = Response(json.dumps(sg))
     return resp
 
-def readbuddy():
+def readvinnie():
     s = ""
     with open("drummers/vinniecolaiutra.html") as f:
             for l in f:
