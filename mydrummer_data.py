@@ -1,20 +1,11 @@
 import json
 import requests
 from flask import Flask, make_response, request, jsonify, Response
-import paho.mqtt.client as mqtt
-
 
 app = Flask(__name__)
 data_dir = "./"
 data_file = "drummer.txt"
 
-'''
-def on_connect(client, userdata, flags, rc):
-    client.subscribe("q_list")
-
-def on_message(client, userdata, msg):
-        sys.stderr.write("topic: ", msg.topic + '\nMessage: ' + str(msg.payload))
-'''
 
 @app.route("/drummer_list")
 def drummer_list():
@@ -81,17 +72,7 @@ def option_list():
 
 
 if __name__ == "__main__":
-    #app.run(debug=True, host='0.0.0.0', port=int('5003'))
     app.run(debug=True, host='0.0.0.0')
-
-'''
-    client = mqtt.Client()
-    client.on_connect = on_connect
-    client.on_message = on_message
-    client.connect("192.168.99.100", 32775, 32774)
-    client.loop_forever()
-'''
-
 
 
 
