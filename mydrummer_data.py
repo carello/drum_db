@@ -7,64 +7,11 @@ data_dir = "./"
 data_file = "drummer.txt"
 
 
-@app.route("/drummer_list")
-def drummer_list():
-    drummer_list = []
-    with open("drummer.txt") as f:
-        for line in f:
-            line = line.rstrip()
-            drummer_list.append(line)
-    resp = make_response(jsonify(drummers=drummer_list))
-    return resp
-
-@app.route("/stevegadd")
-def stevegadd():
-    sg = {'stevegadd': readdrummer("stevegadd")}
-    resp = Response(json.dumps(sg))
-    return resp
-
-
-@app.route("/buddyrich")
-def buddyrich():
-    sg = {'buddyrich': readdrummer("buddyrich")}
-    resp = Response(json.dumps(sg))
-    return resp
-
-
-@app.route("/carterbeauford")
-def carterbeauford():
-    sg = {'carterbeauford': readdrummer("carterbeauford")}
-    resp = Response(json.dumps(sg))
-    return resp
-
-
-@app.route("/chetcarello")
-def chetcarello():
-    sg = {'chetcarello': readdrummer("chetcarello")}
-    resp = Response(json.dumps(sg))
-    return resp
-
-
-@app.route("/neilpeart")
-def neilpeart():
-    sg = {'neilpeart': readdrummer("neilpeart")}
-    resp = Response(json.dumps(sg))
-    return resp
-
-
-@app.route("/vinniecolaiuta")
-def vinniecolaiutra():
-    sg = {'vinniecolaiuta': readdrummer("vinniecolaiuta")}
-    resp = Response(json.dumps(sg))
-    return resp
-
-
 @app.route("/options", methods=["GET"])
 def options_route():
     if request.method == "GET":
         options = {"options":option_list()}
         status = 200
-    
     resp = Response(
         json.dumps(options, sort_keys=True, indent = 4, separators = (',', ': ')),
         content_type='application/json',
@@ -81,6 +28,13 @@ def option_list():
     return options
 
 
+@app.route("/lookupdrummer", methods=["POST"])
+def messit():
+    drummer = request.data
+    resp = readdrummer(drummer)
+    return resp
+
+
 def readdrummer(drummer):
     s = ""
     with open('drummers/'+ drummer + ".html") as f:
@@ -88,8 +42,6 @@ def readdrummer(drummer):
             l = l.rstrip()
             s += l
     return s
-
-
 
 
 if __name__ == "__main__":
