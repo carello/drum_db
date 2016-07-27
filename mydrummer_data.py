@@ -19,90 +19,44 @@ def drummer_list():
 
 @app.route("/stevegadd")
 def stevegadd():
-    sg = {'stevegadd': readsteve()}
+    sg = {'stevegadd': readdrummer("stevegadd")}
     resp = Response(json.dumps(sg))
     return resp
-
-def readsteve():
-    s = ""
-    with open("drummers/stevegadd.html") as f:
-            for l in f:
-                l = l.rstrip()
-                s += l
-    return s
 
 
 @app.route("/buddyrich")
 def buddyrich():
-    sg = {'buddyrich': readbuddy()}
+    sg = {'buddyrich': readdrummer("buddyrich")}
     resp = Response(json.dumps(sg))
     return resp
 
-def readbuddy():
-    s = ""
-    with open("drummers/buddyrich.html") as f:
-            for l in f:
-                l = l.rstrip()
-                s += l
-    return s
 
 @app.route("/carterbeauford")
 def carterbeauford():
-    sg = {'carterbeauford': readcarter()}
+    sg = {'carterbeauford': readdrummer("carterbeauford")}
     resp = Response(json.dumps(sg))
     return resp
 
-def readcarter():
-    s = ""
-    with open("drummers/carterbeauford.html") as f:
-            for l in f:
-                l = l.rstrip()
-                s += l
-    return s
 
 @app.route("/chetcarello")
 def chetcarello():
-    sg = {'chetcarello': readchet()}
+    sg = {'chetcarello': readdrummer("chetcarello")}
     resp = Response(json.dumps(sg))
     return resp
 
-def readchet():
-    s = ""
-    with open("drummers/chetcarello.html") as f:
-            for l in f:
-                l = l.rstrip()
-                s += l
-    return s
 
-@app.route("/neipeart")
+@app.route("/neilpeart")
 def neilpeart():
-    sg = {'neilpeart': readneil()}
+    sg = {'neilpeart': readdrummer("neilpeart")}
     resp = Response(json.dumps(sg))
     return resp
 
-def readneil():
-    s = ""
-    with open("drummers/neilpeart.html") as f:
-            for l in f:
-                l = l.rstrip()
-                s += l
-    return s
 
-
-@app.route("/vinniecolaiutra")
+@app.route("/vinniecolaiuta")
 def vinniecolaiutra():
-    sg = {'vinniecolaiuta': readvinnie()}
+    sg = {'vinniecolaiuta': readdrummer("vinniecolaiuta")}
     resp = Response(json.dumps(sg))
     return resp
-
-def readvinnie():
-    s = ""
-    with open("drummers/vinniecolaiutra.html") as f:
-            for l in f:
-                l = l.rstrip()
-                s += l
-    return s
-
 
 
 @app.route("/options", methods=["GET"])
@@ -127,8 +81,20 @@ def option_list():
     return options
 
 
+def readdrummer(drummer):
+    s = ""
+    with open('drummers/'+ drummer + ".html") as f:
+        for l in f:
+            l = l.rstrip()
+            s += l
+    return s
+
+
+
+
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=int("5003"))
+
 
 
 
