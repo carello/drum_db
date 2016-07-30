@@ -13,11 +13,7 @@ data_file = "drummer.txt"
 def options_route():
     if request.method == "GET":
         options = {"options":option_list()}
-        status = 200
-    resp = Response(
-        json.dumps(options, sort_keys=True, indent = 4, separators = (',', ': ')),
-        content_type='application/json',
-        status=status)
+        resp = Response(json.dumps(options), content_type='application/json')
     return resp
 
 
